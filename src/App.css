@@ -1,0 +1,246 @@
+
+#root {
+  width: 100%;
+}
+
+.joc {
+  width: min(640px, 100%);
+  margin: 0 auto;
+  padding: 32px 20px;
+  color: #252525;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.capcalera {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.capcalera h1 {
+  font-size: 28px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.capcalera p {
+  line-height: 1.5;
+}
+
+.graella {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.paraula {
+  min-height: 84px;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  background: #efeee8;
+  color: #252525;
+  font: inherit;
+  font-size: clamp(10px, 2.4vw, 15px);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.paraula:hover {
+  background: #e2e0d8;
+}
+
+.paraula.seleccionada {
+  background: #5b5b5b;
+  color: white;
+}
+
+.comptador {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.boto-reinicia {
+  display: block;
+  margin: 16px auto;
+  padding: 12px 20px;
+  border: 1px solid #252525;
+  border-radius: 24px;
+  background: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boto-reinicia:hover {
+  background: #f1f1f1;
+}
+
+button:focus-visible {
+  outline: 3px solid #3677b8;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .joc {
+    padding: 24px 12px;
+  }
+
+  .paraula {
+    min-height: 68px;
+  }
+}
+
+.grups-resolts {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.grup-resolt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 8px;
+  border-radius: 5px;
+  background: #d5ead8;
+  text-align: center;
+}
+
+.grup-resolt strong {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.grup-resolt span {
+  font-size: 14px;
+}
+
+.errors {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.boto-comprova {
+  display: block;
+  margin: 16px auto;
+  padding: 12px 24px;
+  border: 1px solid #252525;
+  border-radius: 24px;
+  background: #252525;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boto-comprova:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.paraula:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.final-partida {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.final-partida h2 {
+  font-size: 22px;
+}
+
+/* Colors pastel per als quatre grups resolts */
+.grup-resolt.color-0 {
+  background: #d5ead8;
+}
+
+.grup-resolt.color-1 {
+  background: #f5e8ad;
+}
+
+.grup-resolt.color-2 {
+  background: #c9e2f5;
+}
+
+.grup-resolt.color-3 {
+  background: #e4d5f5;
+}
+
+/* Entrada animada dels grups encertats */
+.grup-resolt {
+  animation: apareix-grup 350ms ease-out both;
+}
+
+@keyframes apareix-grup {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sacsejada de la graella quan hi ha un error */
+.graella.sacseja {
+  animation: sacsejada 400ms ease-in-out;
+}
+
+@keyframes sacsejada {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+
+  40%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Popup temporal */
+
+.popup {
+  position: fixed;
+  z-index: 1000;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 22px;
+  border-radius: 28px;
+  background: #252525;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: apareix-popup 250ms ease-out;
+}
+
+@keyframes apareix-popup {
+  from {
+    opacity: 0;
+    translate: 0 -12px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
