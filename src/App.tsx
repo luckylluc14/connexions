@@ -1,25 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
-
-const grups = [
-  {
-    nom: 'Flors',
-    paraules: ['ROSA', 'TULIPA', 'LLIRI', 'GIRA-SOL'],
-  },
-  {
-    nom: 'Instruments musicals',
-    paraules: ['GUITARRA', 'PIANO', 'VIOLÍ', 'BATERIA'],
-  },
-  {
-    nom: 'Mesos de l’any',
-    paraules: ['GENER', 'MARÇ', 'MAIG', 'JULIOL'],
-  },
-  {
-    nom: 'Animals',
-    paraules: ['GAT', 'GOS', 'CAVALL', 'CONILL'],
-  },
-]
+import { grups } from './puzzles'
 
 function barrejar<T,>(llista: T[]): T[] {
   const resultat = [...llista]
