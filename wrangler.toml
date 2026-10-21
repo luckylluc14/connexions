@@ -2,5 +2,11 @@
 name = "connexions"
 compatibility_date = "2026-10-21"
 pages_build_output_dir = "./dist"
+
 [vars]
 ADMIN_USERNAME = "lluc"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "connexions-db"
+database_id = "f898fbc0-f012-46de-a282-5d77e7d3e33e"

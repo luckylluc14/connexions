@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Secrets locals i configuració de Cloudflare
+.dev.vars
+.wrangler/
+
+# Còpies de seguretat
+backups/
