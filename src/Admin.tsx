@@ -1,5 +1,6 @@
 
 import { useEffect, useState, type FormEvent } from 'react'
+import { puzzlesPerData } from './puzzles'
 
 type EstatSessio = 'carregant' | 'login' | 'autenticat'
 
@@ -130,7 +131,27 @@ export default function Admin() {
         <section className="admin-panell">
           <h2>Benvingut/da, {usuari}</h2>
           <p>Has iniciat sessió correctament.</p>
-          <p>La gestió dels puzles encara no està implementada.</p>
+          <div className="admin-llista-puzles">
+  <h3>Puzles existents ({Object.keys(puzzlesPerData).length})</h3>
+
+  {Object.entries(puzzlesPerData)
+    .sort(([dataA], [dataB]) => dataB.localeCompare(dataA))
+    .map(([data, puzzle]) => (
+      <article className="admin-puzzle" key={data}>
+        <h4>{data}</h4>
+        <p>Estat: {puzzle.estat}</p>
+        <p>Nombre de grups: {puzzle.grups.length}</p>
+
+        {puzzle.grups.map((grup) => (
+          <div key={grup.nom}>
+            <strong>{grup.nom}</strong>
+            <p>{grup.paraules.join(', ')}</p>
+            <p>Dificultat: {grup.dificultat}/4</p>
+          </div>
+        ))}
+      </article>
+    ))}
+</div>
 
           {error && <p className="admin-error" role="alert">{error}</p>}
 
