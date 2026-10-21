@@ -244,3 +244,117 @@ button:focus-visible {
     translate: 0 0;
   }
 }
+
+/* Navegació entre el puzle diari i l'arxiu */
+.navegacio {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 24px;
+}
+
+.navegacio button {
+  padding: 10px 22px;
+  border: 1px solid #252525;
+  border-radius: 24px;
+  background: white;
+  color: #252525;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navegacio button.nav-actiu {
+  background: #252525;
+  color: white;
+}
+
+.titol-puzzle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.titol-puzzle h2,
+.arxiu h2,
+.sense-puzzle h2 {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.titol-puzzle p,
+.arxiu > p,
+.sense-puzzle p {
+  color: #555;
+  margin-top: 0;
+}
+
+.arxiu {
+  margin-top: 24px;
+}
+
+.llista-arxiu {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.element-arxiu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #deddd6;
+  border-radius: 8px;
+}
+
+.info-arxiu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-arxiu strong {
+  text-transform: capitalize;
+}
+
+.info-arxiu span {
+  color: #666;
+  font-size: 13px;
+}
+
+.boto-arxiu {
+  padding: 9px 15px;
+  border: 1px solid #252525;
+  border-radius: 20px;
+  background: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boto-arxiu:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sense-puzzle {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.nota-bloqueig {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .element-arxiu {
+    padding: 12px 10px;
+  }
+
+  .boto-arxiu {
+    padding: 8px 12px;
+  }
+}

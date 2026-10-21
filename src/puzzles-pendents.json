@@ -1,0 +1,152 @@
+[
+  {
+    "data": "",
+    "estat": "esborrany",
+    "grups": [
+      {
+        "nom": "Verbs relacionats amb la parla",
+        "paraules": [
+          "XERRAR",
+          "MURMURAR",
+          "CRIDAR",
+          "XIUXIUEJAR"
+        ],
+        "dificultat": 1,
+        "explicacio": "Tots són verbs que descriuen maneres de parlar."
+      },
+      {
+        "nom": "Parts d'una bicicleta",
+        "paraules": [
+          "CADENA",
+          "PEDAL",
+          "MANILLAR",
+          "SELLÓ"
+        ],
+        "dificultat": 2,
+        "explicacio": "Totes són peces d'una bicicleta."
+      },
+      {
+        "nom": "Paraules que també són animals",
+        "paraules": [
+          "LLIMA",
+          "MICO",
+          "GAT",
+          "LLEÓ"
+        ],
+        "dificultat": 3,
+        "explicacio": "Aquesta categoria és una prova de disseny: cal comprovar que tots els elements comparteixen la relació indicada."
+      },
+      {
+        "nom": "Instruments de mesura",
+        "paraules": [
+          "REGLE",
+          "BALANÇA",
+          "TERMÒMETRE",
+          "CRONÒMETRE"
+        ],
+        "dificultat": 4,
+        "explicacio": "Tots són instruments que serveixen per mesurar alguna magnitud."
+      }
+    ]
+  },
+  {
+    "data": "2026-10-22",
+    "estat": "publicat",
+    "grups": [
+      {
+        "nom": "Verdures",
+        "paraules": [
+          "CARXOFA",
+          "CARBASSÓ",
+          "COLIFLOR",
+          "ALBERGÍNIA"
+        ],
+        "dificultat": 1,
+        "explicacio": "Totes són verdures en l'ús culinari habitual."
+      },
+      {
+        "nom": "Elements d'un ordinador",
+        "paraules": [
+          "TECLAT",
+          "RATOLÍ",
+          "PANTALLA",
+          "IMPRESSORA"
+        ],
+        "dificultat": 2,
+        "explicacio": "Són perifèrics o dispositius habituals d'un ordinador."
+      },
+      {
+        "nom": "Fenòmens meteorològics",
+        "paraules": [
+          "BOIRA",
+          "CALAMARSA",
+          "VENT",
+          "GEBRE"
+        ],
+        "dificultat": 3,
+        "explicacio": "Tots estan relacionats amb fenòmens atmosfèrics."
+      },
+      {
+        "nom": "Figures geomètriques",
+        "paraules": [
+          "ROMBE",
+          "TRAPEZI",
+          "PENTÀGON",
+          "HEXÀGON"
+        ],
+        "dificultat": 4,
+        "explicacio": "Totes són figures geomètriques."
+      }
+    ]
+  },
+  {
+    "data": "",
+    "estat": "esborrany",
+    "grups": [
+      {
+        "nom": "Estris de cuina",
+        "paraules": [
+          "ESPÀTULA",
+          "BATEDOR",
+          "COLADOR",
+          "CULLERA"
+        ],
+        "dificultat": 1,
+        "explicacio": "Tots són estris que es poden utilitzar a la cuina."
+      },
+      {
+        "nom": "Parts d'una casa",
+        "paraules": [
+          "BALCÓ",
+          "TEULADA",
+          "ESCALETA",
+          "FINESTRA"
+        ],
+        "dificultat": 2,
+        "explicacio": "Tots són elements arquitectònics d'una casa."
+      },
+      {
+        "nom": "Paraules relacionades amb la música",
+        "paraules": [
+          "RITME",
+          "MELODIA",
+          "HARMONIA",
+          "TEMPO"
+        ],
+        "dificultat": 3,
+        "explicacio": "Totes són nocions musicals."
+      },
+      {
+        "nom": "Materials",
+        "paraules": [
+          "COURE",
+          "VIDRE",
+          "FUSTA",
+          "PORCELLANA"
+        ],
+        "dificultat": 4,
+        "explicacio": "Tots són materials utilitzats per fabricar objectes."
+      }
+    ]
+  }
+]

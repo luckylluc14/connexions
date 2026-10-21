@@ -1,0 +1,152 @@
+{
+  "2026-10-20": {
+    "data": "2026-10-20",
+    "estat": "publicat",
+    "grups": [
+      {
+        "nom": "Flors",
+        "paraules": [
+          "ROSA",
+          "TULIPA",
+          "LLIRI",
+          "GIRA-SOL"
+        ],
+        "dificultat": 1,
+        "explicacio": "Totes són flors."
+      },
+      {
+        "nom": "Instruments musicals",
+        "paraules": [
+          "GUITARRA",
+          "PIANO",
+          "VIOLÍ",
+          "BATERIA"
+        ],
+        "dificultat": 2,
+        "explicacio": "Tots són instruments musicals."
+      },
+      {
+        "nom": "Mesos de l’any",
+        "paraules": [
+          "GENER",
+          "MARÇ",
+          "MAIG",
+          "JULIOL"
+        ],
+        "dificultat": 3,
+        "explicacio": "Tots són mesos de l’any."
+      },
+      {
+        "nom": "Animals",
+        "paraules": [
+          "GAT",
+          "GOS",
+          "CAVALL",
+          "CONILL"
+        ],
+        "dificultat": 4,
+        "explicacio": "Tots són animals."
+      }
+    ]
+  },
+  "2026-10-21": {
+    "data": "2026-10-21",
+    "estat": "publicat",
+    "grups": [
+      {
+        "nom": "Fruites",
+        "paraules": [
+          "POMA",
+          "PERA",
+          "PLÀTAN",
+          "PRÉSSEC"
+        ],
+        "dificultat": 1,
+        "explicacio": "Totes són fruites."
+      },
+      {
+        "nom": "Parts del cos",
+        "paraules": [
+          "COLZE",
+          "GENOLL",
+          "ESPATLLA",
+          "TURMELL"
+        ],
+        "dificultat": 2,
+        "explicacio": "Totes són parts del cos."
+      },
+      {
+        "nom": "Colors",
+        "paraules": [
+          "VERMELL",
+          "BLAU",
+          "VERD",
+          "GROC"
+        ],
+        "dificultat": 3,
+        "explicacio": "Tots són noms de colors."
+      },
+      {
+        "nom": "Material escolar",
+        "paraules": [
+          "LLAPIS",
+          "GOMA",
+          "REGLE",
+          "RETOLADOR"
+        ],
+        "dificultat": 4,
+        "explicacio": "Tots són objectes que es poden utilitzar a l’escola."
+      }
+    ]
+  },
+  "2026-10-22": {
+    "data": "2026-10-22",
+    "estat": "publicat",
+    "grups": [
+      {
+        "nom": "Verdures",
+        "paraules": [
+          "CARXOFA",
+          "CARBASSÓ",
+          "COLIFLOR",
+          "ALBERGÍNIA"
+        ],
+        "dificultat": 1,
+        "explicacio": "Totes són verdures en l'ús culinari habitual."
+      },
+      {
+        "nom": "Elements d'un ordinador",
+        "paraules": [
+          "TECLAT",
+          "RATOLÍ",
+          "PANTALLA",
+          "IMPRESSORA"
+        ],
+        "dificultat": 2,
+        "explicacio": "Són perifèrics o dispositius habituals d'un ordinador."
+      },
+      {
+        "nom": "Fenòmens meteorològics",
+        "paraules": [
+          "BOIRA",
+          "CALAMARSA",
+          "VENT",
+          "GEBRE"
+        ],
+        "dificultat": 3,
+        "explicacio": "Tots estan relacionats amb fenòmens atmosfèrics."
+      },
+      {
+        "nom": "Figures geomètriques",
+        "paraules": [
+          "ROMBE",
+          "TRAPEZI",
+          "PENTÀGON",
+          "HEXÀGON"
+        ],
+        "dificultat": 4,
+        "explicacio": "Totes són figures geomètriques."
+      }
+    ]
+  }
+}

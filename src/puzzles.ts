@@ -1,20 +1,19 @@
 
-export const grups = [
-    {
-      nom: 'Flors',
-      paraules: ['ROSA', 'TULIPA', 'LLIRI', 'GIRA-SOL'],
-    },
-    {
-      nom: 'Instruments musicals',
-      paraules: ['GUITARRA', 'PIANO', 'VIOLÍ', 'BATERIA'],
-    },
-    {
-      nom: 'Mesos de l’any',
-      paraules: ['GENER', 'MARÇ', 'MAIG', 'JULIOL'],
-    },
-    {
-      nom: 'Animals',
-      paraules: ['GAT', 'GOS', 'CAVALL', 'CONILL'],
-    },
-  ]
-  
+import dades from './puzzles.json'
+
+export type Dificultat = 1 | 2 | 3 | 4
+
+export type Grup = {
+  nom: string
+  paraules: string[]
+  dificultat: Dificultat
+  explicacio?: string
+}
+
+export type Puzzle = {
+  data: string
+  grups: Grup[]
+  estat: 'esborrany' | 'aprovat' | 'publicat'
+}
+
+export const puzzlesPerData = dades as Record<string, Puzzle>
