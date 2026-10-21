@@ -415,3 +415,55 @@ button:focus-visible {
 .admin-peu a {
   color: #252525;
 }
+
+
+/* Panell d'administració: llista de puzles */
+
+.admin-llista-puzles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.admin-llista-puzles > h3 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.admin-puzzle {
+  padding: 20px;
+  border: 1px solid var(--color-borde, #d8d8d8);
+  border-radius: 14px;
+  background: var(--color-targeta, #fff);
+  color: var(--color-text, #222);
+  overflow-wrap: anywhere;
+}
+
+.admin-puzzle h4 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.admin-puzzle > p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+}
+
+.admin-puzzle > div {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-borde, #e5e5e5);
+}
+
+.admin-puzzle > div strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-puzzle > div p {
+  margin: 4px 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
