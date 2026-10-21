@@ -358,3 +358,60 @@ button:focus-visible {
     padding: 8px 12px;
   }
 }
+
+/* Administració */
+.admin-panell {
+  max-width: 420px;
+  margin: 32px auto;
+  padding: 24px;
+  border: 1px solid #deddd6;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.admin-panell h2 {
+  margin-top: 0;
+}
+
+.admin-formulari {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.admin-formulari label {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.admin-formulari input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.admin-formulari .boto-comprova {
+  margin: 16px 0 0;
+}
+
+.admin-error {
+  color: #a32020;
+  font-size: 14px;
+}
+
+.admin-missatge {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.admin-peu {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.admin-peu a {
+  color: #252525;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { puzzlesPerData } from './puzzles'
 import type { Puzzle } from './puzzles'
+import Admin from './Admin'
 
 type Resultat = {
   estat: 'victoria' | 'derrota'
@@ -85,6 +86,9 @@ function barrejar<T,>(llista: T[]): T[] {
 }
 
 function App() {
+  if (window.location.pathname.replace(/\/+$/, '') === '/admin') {
+    return <Admin />
+  }
   const [dataAvui, setDataAvui] = useState(obtenirDataAvui)
   const [dataArxiuSeleccionada, setDataArxiuSeleccionada] =
     useState<string | null>(null)
