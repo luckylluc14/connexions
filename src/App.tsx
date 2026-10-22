@@ -263,15 +263,6 @@ function seleccionarData(data: string) {
     </p>
   </section>
 )}
-
-       : (
-        <section className="sense-puzzle">
-          <h2>Encara no hi ha cap puzle disponible</h2>
-          <p>
-            Torna més tard. Publicarem un nou repte quan estigui preparat.
-          </p>
-        </section>
-      )
     </main>
   )
 }
