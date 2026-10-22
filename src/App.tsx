@@ -264,13 +264,6 @@ function seleccionarData(data: string) {
   </section>
 )}
 
-      ) : puzzleActual ? (
-        <Partida
-  key={dataMostrada}
-  data={dataMostrada}
-  puzzle={puzzleActual}
-  esAvui={dataMostrada === dataAvui}
-/>
       ) : (
         <section className="sense-puzzle">
           <h2>Encara no hi ha cap puzle disponible</h2>
