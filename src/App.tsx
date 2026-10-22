@@ -264,7 +264,7 @@ function seleccionarData(data: string) {
   </section>
 )}
 
-      ) : (
+       : (
         <section className="sense-puzzle">
           <h2>Encara no hi ha cap puzle disponible</h2>
           <p>
