@@ -66,7 +66,7 @@ interface Env {
               : {}),
           };
   
-          puzzle.grups[fila.group_position] = grup;
+          puzzle.grups[fila.group_position - 1] = grup;
         }
   
         grup.paraules.push(fila.word);
