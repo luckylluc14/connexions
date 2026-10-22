@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
-import { puzzlesPerData } from './puzzles'
 import type { Puzzle } from './puzzles'
 import Admin from './Admin'
 
@@ -94,6 +93,54 @@ function App() {
     useState<string | null>(null)
   const [veientArxiu, setVeientArxiu] = useState(false)
 
+  const [puzzlesPerData, setPuzzlesPerData] =
+  useState<Record<string, Puzzle>>({})
+const [carregant, setCarregant] = useState(true)
+const [errorCarrega, setErrorCarrega] = useState(false)
+
+useEffect(() => {
+  let actiu = true
+
+  async function carregarPuzles() {
+    try {
+      const resposta = await fetch('/api/puzzles')
+
+      if (!resposta.ok) {
+        throw new Error('No s’han pogut carregar els puzles')
+      }
+
+      const dades = await resposta.json() as Puzzle[]
+
+      const indexats: Record<string, Puzzle> = {}
+
+      for (const puzzle of dades) {
+        indexats[puzzle.data] = puzzle
+      }
+
+      if (actiu) {
+        setPuzzlesPerData(indexats)
+        setErrorCarrega(false)
+      }
+    } catch (error) {
+      console.error('Error carregant els puzles:', error)
+
+      if (actiu) {
+        setErrorCarrega(true)
+      }
+    } finally {
+      if (actiu) {
+        setCarregant(false)
+      }
+    }
+  }
+
+  void carregarPuzles()
+
+  return () => {
+    actiu = false
+  }
+}, [])
+
   // Detecta el canvi de dia encara que la pàgina estigui oberta.
   useEffect(() => {
     const temporitzador = window.setInterval(() => {
@@ -144,46 +191,76 @@ function seleccionarData(data: string) {
         </button>
       </nav>
 
-      {veientArxiu ? (
-        <section className="arxiu">
-          <h2>Arxiu de puzles</h2>
-          <p>Consulta els puzles d'avui i dels sis dies anteriors.</p>
+      
+{carregant ? (
+  <section className="sense-puzzle">
+    <h2>Carregant puzles...</h2>
+    <p>Un moment, estem preparant el repte.</p>
+  </section>
+) : errorCarrega ? (
+  <section className="sense-puzzle">
+    <h2>No s'han pogut carregar els puzles</h2>
+    <p>Comprova la connexió i torna a carregar la pàgina.</p>
+    <button onClick={() => window.location.reload()}>
+      Torna-ho a provar
+    </button>
+  </section>
+) : veientArxiu ? (
+  <section className="arxiu">
+    <h2>Arxiu de puzles</h2>
+    <p>Consulta els puzles d'avui i dels sis dies anteriors.</p>
 
-          <div className="llista-arxiu">
-            {datesArxiu.map((data) => {
-              const puzzle = puzzlesPerData[data]
-              const resultat = llegirRegistre()[data]
-              const esAvui = data === dataAvui
+    <div className="llista-arxiu">
+      {datesArxiu.map((data) => {
+        const puzzle = puzzlesPerData[data]
+        const resultat = llegirRegistre()[data]
+        const esAvui = data === dataAvui
 
-              return (
-                <div className="element-arxiu" key={data}>
-                  <div className="info-arxiu">
-                    <strong>{dataLlegible(data)}</strong>
-                    <span>
-                      {!puzzle
-                        ? 'No disponible'
-                        : resultat
-                          ? resultat.estat === 'victoria'
-                            ? 'Completat'
-                            : 'Partida perduda'
-                          : esAvui
-                            ? 'Puzle d’avui'
-                            : 'Per jugar'}
-                    </span>
-                  </div>
+        return (
+          <div className="element-arxiu" key={data}>
+            <div className="info-arxiu">
+              <strong>{dataLlegible(data)}</strong>
+              <span>
+                {!puzzle
+                  ? 'No disponible'
+                  : resultat
+                    ? resultat.estat === 'victoria'
+                      ? 'Completat'
+                      : 'Partida perduda'
+                    : esAvui
+                      ? 'Puzle d’avui'
+                      : 'Per jugar'}
+              </span>
+            </div>
 
-                  <button
-                    className="boto-arxiu"
-                    disabled={!puzzle}
-                    onClick={() => seleccionarData(data)}
-                  >
-                    {resultat ? 'Veure' : esAvui ? 'Jugar' : 'Obrir'}
-                  </button>
-                </div>
-              )
-            })}
+            <button
+              className="boto-arxiu"
+              disabled={!puzzle}
+              onClick={() => seleccionarData(data)}
+            >
+              {resultat ? 'Veure' : esAvui ? 'Jugar' : 'Obrir'}
+            </button>
           </div>
-        </section>
+        )
+      })}
+    </div>
+  </section>
+) : puzzleActual ? (
+  <Partida
+    key={dataMostrada}
+    data={dataMostrada}
+    puzzle={puzzleActual}
+    esAvui={dataMostrada === dataAvui}
+  />
+) : (
+  <section className="sense-puzzle">
+    <h2>Encara no hi ha cap puzle disponible</h2>
+    <p>
+      Torna més tard. Publicarem un nou repte quan estigui preparat.
+    </p>
+  </section>
+)}
+
       ) : puzzleActual ? (
         <Partida
   key={dataMostrada}
@@ -198,7 +275,7 @@ function seleccionarData(data: string) {
             Torna més tard. Publicarem un nou repte quan estigui preparat.
           </p>
         </section>
-      )}
+      )
     </main>
   )
 }
