@@ -467,3 +467,19 @@ button:focus-visible {
   line-height: 1.5;
   font-size: 0.9rem;
 }
+.peu-pagina {
+  margin: 28px auto 16px;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.peu-pagina a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.peu-pagina a:hover {
+  text-decoration: underline;
+}
