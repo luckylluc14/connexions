@@ -54,7 +54,7 @@ interface Env {
         }
   
         const puzzle = puzles.get(fila.puzzle_date)!;
-        let grup = puzzle.grups[fila.group_position];
+        let grup = puzzle.grups[fila.group_position - 1];
   
         if (!grup) {
           grup = {
