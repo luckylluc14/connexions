@@ -154,6 +154,9 @@ useEffect(() => {
   const datesArxiu = obtenirDarrersSetDies(dataAvui)
 const dataMostrada = dataArxiuSeleccionada ?? dataAvui
 const puzzleActual: Puzzle | undefined = puzzlesPerData[dataMostrada]
+console.log('Data mostrada:', dataMostrada)
+console.log('Puzles carregats:', puzzlesPerData)
+console.log('Puzle actual:', puzzleActual)
 
 function anarAvui() {
   setDataArxiuSeleccionada(null)
