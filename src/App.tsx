@@ -173,6 +173,7 @@ function seleccionarData(data: string) {
 }
 
   return (
+    <>
     <main className="joc">
       <header className="capcalera">
         <h1>CONNEXIONS</h1>
@@ -264,6 +265,12 @@ function seleccionarData(data: string) {
   </section>
 )}
     </main>
+        
+    
+     <footer className="peu-pagina">
+     fet per <a href="https://www.instagram.com/llucsanchezgranados/" target="_blank" rel="noreferrer">@luckylluc14</a>
+     </footer>  
+     </>
   )
 }
 
