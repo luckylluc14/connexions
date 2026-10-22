@@ -19,6 +19,22 @@ interface RespostaAdmin {
   missatge?: string
 }
 
+interface GrupFormulari {
+  name: string
+  words: string[]
+  difficulty: number
+  explanation: string
+}
+
+function crearGrupsBuits(): GrupFormulari[] {
+  return Array.from({ length: 4 }, () => ({
+    name: '',
+    words: ['', '', '', ''],
+    difficulty: 1,
+    explanation: '',
+  }))
+}
+
 export default function Admin() {
   const [estat, setEstat] = useState<EstatSessio>('carregant')
   const [usuari, setUsuari] = useState('lluc')
@@ -26,6 +42,10 @@ export default function Admin() {
   const [error, setError] = useState('')
   const [ocupat, setOcupat] = useState(false)
   const [puzzles, setPuzzles] = useState<PuzzleD1[]>([])
+
+  const [dataNova, setDataNova] = useState('')
+  const [grupsNous, setGrupsNous] = useState<GrupFormulari[]>(crearGrupsBuits)
+  const [missatgeExit, setMissatgeExit] = useState('')
 
   async function carregarPuzzles() {
     const resposta = await fetch('/api/admin', {
@@ -143,6 +163,7 @@ export default function Admin() {
 
   async function actualitzarPuzzles() {
     setError('')
+    setMissatgeExit('')
     setOcupat(true)
 
     try {
@@ -152,6 +173,84 @@ export default function Admin() {
         err instanceof Error
           ? err.message
           : 'No s’han pogut actualitzar els puzles.',
+      )
+    } finally {
+      setOcupat(false)
+    }
+  }
+
+  function actualitzarGrup(
+    indexGrup: number,
+    canvis: Partial<GrupFormulari>,
+  ) {
+    setGrupsNous((grupsActuals) =>
+      grupsActuals.map((grup, index) =>
+        index === indexGrup ? { ...grup, ...canvis } : grup,
+      ),
+    )
+  }
+
+  function actualitzarParaula(
+    indexGrup: number,
+    indexParaula: number,
+    paraula: string,
+  ) {
+    setGrupsNous((grupsActuals) =>
+      grupsActuals.map((grup, index) => {
+        if (index !== indexGrup) return grup
+
+        const paraules = [...grup.words]
+        paraules[indexParaula] = paraula
+
+        return { ...grup, words: paraules }
+      }),
+    )
+  }
+
+  async function crearPuzzle(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setError('')
+    setMissatgeExit('')
+    setOcupat(true)
+
+    try {
+      const resposta = await fetch('/api/admin/puzzles', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date: dataNova,
+          groups: grupsNous.map((grup) => ({
+            name: grup.name,
+            words: grup.words,
+            difficulty: grup.difficulty,
+            explanation: grup.explanation,
+          })),
+        }),
+      })
+
+      const dades = await resposta.json() as {
+        ok?: boolean
+        missatge?: string
+      }
+
+      if (!resposta.ok || !dades.ok) {
+        setError(dades.missatge ?? 'No s’ha pogut crear el puzle.')
+        return
+      }
+
+      setMissatgeExit(
+        dades.missatge ?? 'Puzle desat correctament com a esborrany.',
+      )
+      setDataNova('')
+      setGrupsNous(crearGrupsBuits())
+
+      await carregarPuzzles()
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'No s’ha pogut connectar amb el servidor.',
       )
     } finally {
       setOcupat(false)
@@ -206,16 +305,10 @@ export default function Admin() {
             />
 
             {error && (
-              <p className="admin-error" role="alert">
-                {error}
-              </p>
+              <p className="admin-error" role="alert">{error}</p>
             )}
 
-            <button
-              className="boto-comprova"
-              type="submit"
-              disabled={ocupat}
-            >
+            <button className="boto-comprova" type="submit" disabled={ocupat}>
               {ocupat ? 'Comprovant…' : 'Inicia sessió'}
             </button>
           </form>
@@ -224,6 +317,111 @@ export default function Admin() {
         <section className="admin-panell">
           <h2>Benvingut/da, {usuari}</h2>
           <p>Administració de puzles emmagatzemats a D1.</p>
+
+          <section className="admin-llista-puzles">
+            <h3>Crear un puzle nou</h3>
+            <p>El puzle es desarà com a esborrany, sense publicar-se.</p>
+
+            <form className="admin-formulari" onSubmit={crearPuzzle}>
+              <label htmlFor="puzzle-data">Data del puzle</label>
+              <input
+                id="puzzle-data"
+                type="date"
+                value={dataNova}
+                onChange={(event) => setDataNova(event.target.value)}
+                required
+              />
+
+              {grupsNous.map((grup, indexGrup) => (
+                <fieldset className="admin-puzzle" key={indexGrup}>
+                  <legend>Grup {indexGrup + 1}</legend>
+
+                  <label htmlFor={`grup-nom-${indexGrup}`}>Nom del grup</label>
+                  <input
+                    id={`grup-nom-${indexGrup}`}
+                    value={grup.name}
+                    onChange={(event) =>
+                      actualitzarGrup(indexGrup, { name: event.target.value })
+                    }
+                    maxLength={100}
+                    required
+                  />
+
+                  <p>Quatre paraules</p>
+                  {grup.words.map((paraula, indexParaula) => (
+                    <div key={indexParaula}>
+                      <label htmlFor={`paraula-${indexGrup}-${indexParaula}`}>
+                        Paraula {indexParaula + 1}
+                      </label>
+                      <input
+                        id={`paraula-${indexGrup}-${indexParaula}`}
+                        value={paraula}
+                        onChange={(event) =>
+                          actualitzarParaula(
+                            indexGrup,
+                            indexParaula,
+                            event.target.value,
+                          )
+                        }
+                        maxLength={100}
+                        required
+                      />
+                    </div>
+                  ))}
+
+                  <label htmlFor={`grup-dificultat-${indexGrup}`}>
+                    Dificultat
+                  </label>
+                  <select
+                    id={`grup-dificultat-${indexGrup}`}
+                    value={grup.difficulty}
+                    onChange={(event) =>
+                      actualitzarGrup(indexGrup, {
+                        difficulty: Number(event.target.value),
+                      })
+                    }
+                  >
+                    <option value={1}>1 — Més fàcil</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4 — Més difícil</option>
+                  </select>
+
+                  <label htmlFor={`grup-explicacio-${indexGrup}`}>
+                    Explicació (opcional)
+                  </label>
+                  <textarea
+                    id={`grup-explicacio-${indexGrup}`}
+                    value={grup.explanation}
+                    onChange={(event) =>
+                      actualitzarGrup(indexGrup, {
+                        explanation: event.target.value,
+                      })
+                    }
+                    rows={3}
+                  />
+                </fieldset>
+              ))}
+
+              {error && (
+                <p className="admin-error" role="alert">{error}</p>
+              )}
+
+              {missatgeExit && (
+                <p className="admin-missatge" role="status">
+                  {missatgeExit}
+                </p>
+              )}
+
+              <button
+                className="boto-comprova"
+                type="submit"
+                disabled={ocupat}
+              >
+                {ocupat ? 'Desant…' : 'Desa com a esborrany'}
+              </button>
+            </form>
+          </section>
 
           <div className="admin-llista-puzles">
             <h3>Puzles de la base de dades ({puzzles.length})</h3>
@@ -238,9 +436,7 @@ export default function Admin() {
             </button>
 
             {puzzles.length === 0 ? (
-              <p className="admin-missatge">
-                Encara no hi ha puzles a D1. Els importarem en el pas següent.
-              </p>
+              <p className="admin-missatge">Encara no hi ha puzles a D1.</p>
             ) : (
               [...puzzles]
                 .sort((a, b) => b.date.localeCompare(a.date))
@@ -256,9 +452,7 @@ export default function Admin() {
           </div>
 
           {error && (
-            <p className="admin-error" role="alert">
-              {error}
-            </p>
+            <p className="admin-error" role="alert">{error}</p>
           )}
 
           <button
